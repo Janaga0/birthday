@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+Armenian:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold:#D6C2A5;
+  --light:#671212;
+  --black:#090909;
+  --border:#671212;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#585656;
+  color:#D6C2A5;
+  font-family:'Noto Serif Armenian',serif;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 50% 20%,#382b1740,transparent 60%);
+  z-index:-1;
+}
+button{font-family:inherit;cursor:pointer}
+.gold{color:var(--gold)}
+.section{
+  padding:75px 20px;
+  text-align:center;
+  max-width:750px;
+  margin:auto;
+}
+.eyebrow{
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:5px;
+  margin-bottom:20px;
+}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500}
+h2{font-size:39px;color:var(--light);margin-bottom:25px}
+.gold-line{
+  width:75px;height:1px;background:var(--gold);
+  margin:25px auto;
+}
+
+/* INTRO */
+#intro{
+  position:fixed;inset:0;z-index:100;
+  background:radial-gradient(ellipse,#302313,#807a7a 75%);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:25px;
+  transition:opacity 1s,visibility 1s;
+}
+#intro.hidden{opacity:0;visibility:hidden}
+.envelope{
+  width:280px;height:190px;margin:35px auto;
+  position:relative;
+  background:linear-gradient(145deg,#a7a6a4,#510b0b);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 15px 55px #a7a6a4;
+  border:1px solid var(--light);
+}
+.envelope:before,.envelope:after{
+  content:"";position:absolute;inset:0;
+}
+.envelope:before{
+  background:linear-gradient(35deg,transparent 49%,#b29999 50%,transparent 51%);
+}
+.envelope:after{
+  background:linear-gradient(-35deg,transparent 49%,#b29999 50%,transparent 51%);
+}
+.seal{
+  width:65px;height:65px;border-radius:50%;
+  background:#510b0b;border:2px solid var(--light);
+  color:var(--light);display:flex;align-items:center;
+  justify-content:center;font-size:28px;z-index:2;
+}
+.open-btn{
+  background:transparent;border:1px solid var(--gold);
+  color:var(--light);padding:15px 35px;
+  letter-spacing:3px;font-size:12px;
+}
+.open-btn:hover{background:var(--gold);color:#D6C2A5}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:50px 20px;
+}
+.hero-photo{
+  width:230px;height:290px;object-fit:cover;
+  border:2px solid var(--light);padding:7px;margin:25px 0;
+  box-shadow:0 0 45px #c49b4930;
+}
+.hero h1{
+  font-size:clamp(48px,12vw,82px);
+  color:var(--light);line-height:1.1;
+}
+.hero .subtitle{
+  letter-spacing:5px;font-size:12px;
+  color:var(--gold);margin-bottom:15px;
+}
+.hero p{font-size:14px;line-height:2}
+
+/* DATE */
+.date-card{
+  border:1px solid var(--light);padding:35px 20px;
+  margin-top:25px;background:#ffffff05;
+}
+.date-number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:65px;color:var(--gold);
+}
+.date-details{letter-spacing:3px;font-size:12px}
+
+/* COUNTDOWN */
+.countdown{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  margin-top:30px;
+}
+.count-item{
+  border:1px solid #671212;min-width:75px;padding:15px 10px;
+}
+.count-item strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:34px;color:var(--light);
+}
+.count-item span{font-size:10px;color:#bca875}
+
+/* GALLERY */
+.gallery{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin-top:30px;
+}
+.gallery img{
+  width:100%;height:230px;object-fit:cover;
+  border:1px solid #671212;
+}
+.gallery img:first-child{
+  grid-column:span 2;height:320px;
+}
+
+/* LOCATION */
+.location-box{
+  border:1px solid #671212;padding:30px 20px;margin-top:25px;
+}
+.gold-btn{
+  display:inline-block;margin-top:22px;padding:14px 25px;
+  color:#D6C2A5;background:linear-gradient(120deg,#908d8b,#4d0e10);
+  text-decoration:none;font-size:12px;letter-spacing:2px;
+  border:none;
+  color: #bca875;
+}
+
+/* RSVP */
+.rsvp-btn{
+  display:inline-block;padding:15px 22px;margin:7px;
+  text-decoration:none;font-size:12px;
+  border:1px solid var(--gold);color:var(--light);
+  transition:.3s;
+}
+.rsvp-btn:hover{background:var(--gold);color:#bca875}
+
+/* MUSIC */
+.music-btn{
+  position:fixed;bottom:20px;right:20px;z-index:50;
+  width:48px;height:48px;border-radius:50%;
+  border:1px solid var(--gold);background:#671212;
+  color:var(--gold);font-size:20px;
+}
+
+/* FOOTER */
+footer{
+  padding:45px 20px;text-align:center;
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;font-size:22px;
+}
+.fade{animation:fadeUp 1.3s ease both}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:480px){
+  .gallery img{height:180px}
+  .gallery img:first-child{height:250px}
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* =================================
+   ՓՈԽԻՐ ՏՎՅԱԼՆԵՐԸ ԱՅՍՏԵՂ
+================================= */
+
+const CONFIG = {
+  name: "ժաննա",
+  age: "20",
+  date: "2026-12-07T13:00:00",
+  dateText: "7 ԴԵԿՏԵՄԲԵՐ",
+  time: "13:00",
+  venue: "Golden Palace",
+  address: "Երևան, Հայաստան",
+  map: "https://maps.google.com",
+  music: "Hrag_-_Happy_Birthday_2020_68130393.mp3",
+  mainPhoto: "nkarner/photo1.jpg",
+  photos: [
+    "nkarner/photo21.jpg",
+    "nkarner/photo31.jpg",
+    "nkarner/photo41.jpg"
+  ],
+  whatsapp: "+37494455074"
+};
+</script>
+
+<!-- OPENING -->
+<div id="intro">
+  <div>
+    <div class="eyebrow">YOU ARE INVITED</div>
+    <h2>Հատուկ հրավեր</h2>
+    <div class="envelope">
+      <div class="seal">🤍</div>
+    </div>
+    <p style="margin-bottom:25px;color:#d4d3d3">
+      Քեզ սպասում է մի գեղեցիկ երեկո...
+    </p>
+    <button class="open-btn" onclick="openInvitation()">
+      ԲԱՑԵԼ ՀՐԱՎԵՐԸ
+    </button>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop></audio>
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">♫</button>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="subtitle fade">SAVE THE DATE</div>
+  <p class="gold">Սիրով հրավիրում եմ քեզ</p>
+  <img id="mainPhoto" class="hero-photo fade" alt="Birthday photo">
+  <div class="subtitle">MY BIRTHDAY</div>
+  <h1 id="heroName"></h1>
+  <h2 id="heroAge" style="font-size:35px;margin:12px 0"></h2>
+  <div class="gold-line"></div>
+  <p>
+    Եկ միասին նշենք իմ կյանքի այս գեղեցիկ օրը։
+    <br>Քո ներկայությունն ինձ համար շատ կարևոր է։
+  </p>
+</section>
+
+<!-- DATE -->
+<section class="section">
+  <div class="eyebrow">THE CELEBRATION</div>
+  <h2>Օրը և ժամը</h2>
+  <div class="date-card">
+    <div class="date-number" id="dateNumber"></div>
+    <div class="date-details" id="dateMonth"></div>
+    <div class="gold-line"></div>
+    <p id="timeText"></p>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section">
+  <div class="eyebrow">COUNTDOWN</div>
+  <h2>Մինչ հանդիպում</h2>
+  <div class="countdown">
+    <div class="count-item"><strong id="days">00</strong><span>ՕՐ</span></div>
+    <div class="count-item"><strong id="hours">00</strong><span>ԺԱՄ</span></div>
+    <div class="count-item"><strong id="minutes">00</strong><span>ՐՈՊԵ</span></div>
+    <div class="count-item"><strong id="seconds">00</strong><span>ՎԱՅՐԿՅԱՆ</span></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section">
+  <div class="eyebrow">MEMORIES</div>
+  <h2>Լուսանկարներ</h2>
+  <div class="gold-line"></div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<!-- LOCATION -->
+<section class="section">
+  <div class="eyebrow">THE PLACE</div>
+  <h2>Սպասում եմ քեզ</h2>
+  <div class="location-box">
+    <div style="font-size:35px;margin-bottom:15px">♧</div>
+    <h2 id="venueName" style="font-size:30px"></h2>
+    <p id="venueAddress"></p>
+    <a id="mapLink" class="gold-btn" target="_blank" rel="noopener">
+      ՏԵՍՆԵԼ ՔԱՐՏԵԶԸ ↗
+    </a>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="section">
+  <div class="eyebrow">RSVP</div>
+  <h2>Կսպասեմ պատասխանիդ</h2>
+  <p style="line-height:2;font-size:14px">
+    Խնդրում եմ հաստատել մասնակցությունդ։
+    <br>Ուրախ կլինեմ քեզ տեսնել։
+  </p>
+  <div style="margin-top:25px">
+    <a id="yesBtn" class="rsvp-btn" target="_blank">✓ ՍԻՐՈՎ ԿԳԱՄ</a>
+    <a id="noBtn" class="rsvp-btn" target="_blank">✕ ՉԵՄ ԿԱՐՈՂ ԳԱԼ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="gold-line"></div>
+  With Love ♡
+  <p style="font-size:12px;margin-top:15px">
+    Կհանդիպենք տոնական երեկոյին
+  </p>
+</footer>
+
+<script>
+// Տվյալների տեղադրում
+
+document.getElementById("heroName").textContent = CONFIG.name;
+document.getElementById("heroAge").textContent = CONFIG.age + " ՏԱՐԵԿԱՆ";
+document.getElementById("mainPhoto").src = CONFIG.mainPhoto;
+
+const dateParts = CONFIG.dateText.split(" ");
+document.getElementById("dateNumber").textContent = dateParts[0];
+document.getElementById("dateMonth").textContent =
+  dateParts.slice(1).join(" ");
+
+document.getElementById("timeText").textContent = "Ժամը՝ " + CONFIG.time;
+document.getElementById("venueName").textContent = CONFIG.venue;
+document.getElementById("venueAddress").textContent = CONFIG.address;
+document.getElementById("mapLink").href = CONFIG.map;
+
+// Նկարների պատկերասրահ
+
+const gallery = document.getElementById("gallery");
+
+CONFIG.photos.forEach(photo => {
+  const img = document.createElement("img");
+  img.src = photo;
+  img.alt = "Birthday memory";
+  img.loading = "lazy";
+  gallery.appendChild(img);
+});
+
+// Երաժշտություն
+
+const music = document.getElementById("music");
+music.src = CONFIG.music;
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    document.getElementById("musicBtn").textContent = "♫";
+  } else {
+    music.pause();
+    document.getElementById("musicBtn").textContent = "♪";
+  }
+}
+
+// Ծրարի բացում
+
+function openInvitation() {
+  document.getElementById("intro").classList.add("hidden");
+  music.play().catch(() => {});
+}
+
+// Հետհաշվարկ
+
+function updateCountdown() {
+  const target = new Date(CONFIG.date).getTime();
+  const now = Date.now();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    ["days","hours","minutes","seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+    return;
+  }
+
+  document.getElementById("days").textContent =
+    Math.floor(diff / 86400000);
+
+  document.getElementById("hours").textContent =
+    Math.floor(diff / 3600000) % 24;
+
+  document.getElementById("minutes").textContent =
+    Math.floor(diff / 60000) % 60;
+
+  document.getElementById("seconds").textContent =
+    Math.floor(diff / 1000) % 60;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// RSVP WhatsApp
+
+const phone = CONFIG.whatsapp;
+
+document.getElementById("yesBtn").href =
+  "https://wa.me/" + phone +
+  "?text=" + encodeURIComponent("Սիրով կմասնակցեմ ծննդյանդ տոնին։");
+
+document.getElementById("noBtn").href =
+  "https://wa.me/" + phone +
+  "?text=" + encodeURIComponent("Ցավոք չեմ կարողանա մասնակցել։");
+
+</script>
+</body>
+</html>
